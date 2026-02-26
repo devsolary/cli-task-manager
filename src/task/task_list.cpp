@@ -4,11 +4,23 @@
 #include <string>
 #include <sstream>
 
-TaskList::~TaskList()
+
+TaskList::TaskList()
 {
     head = nullptr;
     nextId = 1;
-};
+}
+
+TaskList::~TaskList()
+{
+    TaskNode* temp = head;
+
+    while (temp != nullptr) {
+        TaskNode* nextNode = temp->next;
+        delete temp;
+        temp = nextNode;
+    }
+}
 
 void TaskList::addTask(std::string title,
                        std::string status,
@@ -35,6 +47,7 @@ void TaskList::addTask(std::string title,
 
 void TaskList::displayTasks(){
     TaskNode* temp = head;
+    std::cout << "Head pointer: " << head << std::endl;
 
     while (temp != nullptr){
         std::cout << temp-> task.taskInfo() << std::endl;

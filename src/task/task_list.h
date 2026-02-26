@@ -9,7 +9,8 @@ class TaskList{
             int nextId;
 
     public:
-            ~TaskList();;
+            TaskList();
+            ~TaskList();
 
             void addTask(std::string title, std::string status,
                   std::string startDate,
