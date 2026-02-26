@@ -45,6 +45,43 @@ void TaskList::addTask(std::string title,
     temp->next = newNode;
 };
 
+void TaskList::removeTask(int id)
+{
+    if (head == nullptr) {
+        std::cout << "List is empty.\n";
+        return;
+    }
+
+    // Case 1: removing the head
+    if (head->task.getId() == id) {
+        TaskNode* temp = head;
+        head = head->next;
+        delete temp;
+        std::cout << "Task removed.\n";
+        return;
+    }
+
+    // Case 2: removing non-head node
+    TaskNode* current = head;
+
+    while (current->next != nullptr &&
+           current->next->task.getId() != id)
+    {
+        current = current->next;
+    }
+
+    if (current->next == nullptr) {
+        std::cout << "Task not found.\n";
+        return;
+    }
+
+    TaskNode* nodeToDelete = current->next;
+    current->next = nodeToDelete->next;
+    delete nodeToDelete;
+
+    std::cout << "Task removed.\n";
+}
+
 void TaskList::displayTasks(){
     TaskNode* temp = head;
     std::cout << "Head pointer: " << head << std::endl;

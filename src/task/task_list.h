@@ -3,22 +3,24 @@
 #include "task_node.h"
 #include <string>
 
-class TaskList{
-    private:
-            TaskNode* head;
-            int nextId;
+class TaskList
+{
+private:
+        TaskNode *head;
+        int nextId;
 
-    public:
-            TaskList();
-            ~TaskList();
+public:
+        TaskList();
+        ~TaskList();
 
-            void addTask(std::string title, std::string status,
-                  std::string startDate,
-                  std::string endDate,
-                  std::string timeline);
+        void addTask(std::string title, std::string status,
+                     std::string startDate,
+                     std::string endDate,
+                     std::string timeline);
+        
 
-            void displayTasks();
-
+        void removeTask(int id);
+        void displayTasks();
 };
 
 #endif
