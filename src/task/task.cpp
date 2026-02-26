@@ -1,30 +1,23 @@
-#include <iostream>
-#include <string>
-#include <sstream>
 #include "task.h"
-using namespace std;
+#include <sstream>
 
-class Task
-{
-private:
-    int id;
-    string title, status, startDate, endDate, timeline;
+void Task::setTask(std::string t,
+                   std::string s,
+                   std::string sd,
+                   std::string ed,
+                   std::string tl) {
+    title = t;
+    status = s;
+    startDate = sd;
+    endDate = ed;
+    timeline = tl;
+}
 
-public:
-    void setTask(string t, string s, string sd, string ed, string tl)
-    {
-        title = t;
-        status = s;
-        startDate = sd;
-        endDate = ed;
-        timeline = tl;
-    };
-    string taskInfo()
-    {
-        stringstream ss;
-        ss << title << " | " << status << " | "
-           << startDate << " | " << endDate << " | "
-           << timeline;
-        return ss.str();
-    }
-};
+std::string Task::taskInfo() {
+    std::stringstream ss;
+    ss << title << " | " << status << " | "
+       << startDate << " | " << endDate << " | "
+       << timeline;
+
+    return ss.str();
+}
