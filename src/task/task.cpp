@@ -18,6 +18,25 @@ int Task::getId() const
 {
     return id;
 }
+std::string Task::getTitle() const {
+    return title;
+}
+
+std::string Task::getStatus() const {
+    return status;
+}
+
+std::string Task::getStartDate() const {
+    return startDate;
+}
+
+std::string Task::getEndDate() const {
+    return endDate;
+}
+
+std::string Task::getTimeline() const {
+    return timeline;
+}
 std::string Task::taskInfo() const {
     std::stringstream ss;
     ss << "[" << id << "] "

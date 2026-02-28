@@ -14,6 +14,11 @@ public:
                  std::string tl);
 
     int getId() const;
+    std::string getTitle() const;
+    std::string getStatus() const;
+    std::string getStartDate() const;
+    std::string getEndDate() const;
+    std::string getTimeline() const;
     std::string taskInfo() const;
 };
 

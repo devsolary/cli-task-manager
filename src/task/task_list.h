@@ -21,6 +21,10 @@ public:
 
         void removeTask(int id);
         void displayTasks();
+
+        void saveToJson(const std::string& filename);
+        void loadFromJson(const std::string& filename);
 };
+
 
 #endif

@@ -1,8 +1,11 @@
 #include "task_list.h"
 #include "task.h"
+#include "json.hpp"
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <sstream>
+using json = nlohmann::json;
 
 
 TaskList::TaskList()
@@ -89,5 +92,51 @@ void TaskList::displayTasks(){
     while (temp != nullptr){
         std::cout << temp-> task.taskInfo() << std::endl;
         temp = temp->next; 
+    }
+}
+
+void TaskList::saveToJson(const std::string& filename)
+{
+    json j = json::array();
+
+    TaskNode* current = head;
+
+    while (current != nullptr)
+    {
+        json taskJson;
+        taskJson["id"] = current->task.getId();
+        taskJson["title"] = current->task.getTitle();
+        taskJson["status"] = current->task.getStatus();
+        taskJson["startDate"] = current->task.getStartDate();
+        taskJson["endDate"] = current->task.getEndDate();
+        taskJson["duration"] = current->task.getTimeline();
+
+        j.push_back(taskJson);
+
+        current = current->next;
+    }
+
+    std::ofstream file(filename);
+    file << j.dump(4); // 4 = pretty print
+}
+void TaskList::loadFromJson(const std::string& filename)
+{
+    std::ifstream file(filename);
+
+    if (!file.is_open())
+        return;
+
+    json j;
+    file >> j;
+
+    for (auto& taskJson : j)
+    {
+        addTask(
+            taskJson["title"],
+            taskJson["status"],
+            taskJson["startDate"],
+            taskJson["endDate"],
+            taskJson["duration"]
+        );
     }
 }
