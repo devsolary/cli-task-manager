@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     TaskList list;
-    list.loadFromJson("tasks.json");
+    list.loadFromJson("./storage/tasks.json");
     int choice;
 
     while (true)
@@ -57,7 +57,7 @@ int main()
         }
         else if (choice == 4)
         {
-            list.saveToJson("tasks.json");
+            list.saveToJson("./storage/tasks.json");
             cout << "Exiting...\n";
             break;
         }
